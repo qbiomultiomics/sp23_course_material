@@ -387,6 +387,115 @@ print(benchmark(
 
   We can see that the loop implementation takes 1.741x as long as the vectorized implementation. When we are running (numerous) even more intensive implementations, this can significantly impact our run time.
 
+###### (8) Data frames
+
+Going back to variables and object types, data frames are objects that store two-dimensional representations of data, often with row and column names. Data frames are the bread and butter of data analysis in R!
+
+Let's explore the built in mtcars data frame to learn about this crucial data type.
+
+First, load in the data frame by running the following line of code. "mtcars" will then show up under "Data" in your environment panel.
+
+```{r Exercise 8.1}
+data(mtcars)
+```
+
+The easiest way to view a data frame is to simply click on it in your environment tab! This will open up the matrix in a new tab. You can then explore the data visually.
+
+However, this is not always helpful, especially when looking at larger or more complex data frames. We can use head() and str() to give us a better view in the console itself.
+
+```{r Exercise 8.2}
+head(mtcars) # just like in the terminal, you can use head to view the first few rows of a data frame
+```
+
+Here we can see the first 6 rows of the mtcars data frame. We can see the row names (Mazda RX4, Mazda RX4 Wag, etc.), the column names (mpg, cyl, disp, etc.), and the data types associated with each column (dbl: double-precision floating point number).
+
+```{r Exercise 8.3}
+str(mtcars) # str stands for structure
+```
+
+Running str() will give us info about the structure of the data frame. We can see the data type (data.frame), the number of rows (obs.) and columns (variables), the general data type of each column (num), and a preview of the data in each column.
+
+Note the "$" before each column name. In R, the dollar sign always refers to columns.
+We can view a singular column with the notation: df_name$row_name
+
+Use this syntax to view the mpg column of the mtcars data frame.
+
+```{r Exercise 8.4}
+# add code here
+```
+
+What if we want to view a column, but don't know it's exact name? We can get all column names (or all row names) by using the functions colnames() and rownames(). Call those below, then view the carburetor column using dollar sign notation.
+
+```{r Exercise 8.5}
+# call functions here
+
+mtcars$ # fill in name of carburetor column here
+```
+
+We can also view particular subsets of the data frame by using the df[row, column] notation.
+
+```{r Exercise 8.6}
+mtcars[2, 4] # access the value from the second row, fourth column (this is the horsepower of a Mazda RX4 Wag)
+
+mtcars[1, ] # access all values in the first row (all info on the Mazda RX4)
+
+mtcars[ , 1] # access all values in the first column (mpg info for all cars)
+
+mtcars[1:5, c(1, 4, 6)] # rows one through five and columns 1, 4, and 6
+
+mtcars[-(3:30), ] # access everything EXCEPT rows 3 through 30
+
+mtcars[ , c(-(1:4), -6)] # access everything EXCEPT columns 1 through 4 and column 6
+```
+
+Select the horse power data for the Duster 360, Lincoln Continental, and Maserati Bora. Instead of manually viewing the matrix to determine which rows and column numbers you want to specify, use rownames() and colnames().
+
+```{r Exercise 8.7}
+# write code here
+```
+
+###### (9) Editing data frames
+
+Oftentimes we want to edit data frames to add calculated columns, delete unnecessary rows, subset to a particular view, etc.
+
+You can create a column using the "$" notation to specify the new column name, and "<-" to assign some values to the new column. The syntax is as follows:
+
+```{r Exercise 9.1}
+data_frame$new_column <- values
+```
+
+Let's try this out! In the mtcars data frame, there is a column called "am". This column holds transmission information where 0 = automatic, and 1 = manual. But as of now, this isn't very clear without knowing that information.
+
+Create a new column called "transmission" that assigns the value "automatic" where am = 0, and "manual" where am = 1.
+
+You can use an ifelse statement to assign your values! Remember, ifelse() takes in three arguments: ifelse(test_condition, yes, no)
+
+```{r Exercise 9.2}
+# write code here
+```
+
+Now that we have the "transmission" column, the "am" column is no longer particularly useful. Let's delete it.
+
+You can easily delete a row/column by subsetting around it using df[row, column] notation. Simply choose all of the rows/columns you want to keep (ignoring the ones you want to delete), and assign the subset to either the original data frame variable (to permanently delete the rows/columns), or to a new variable storing an edited copy of the data frame. In general, it is best to create a copy that way you always have access to your original unedited data frame if needed.
+
+The syntax is as follows:
+
+```{r Exercise 9.3}
+df_copy <- df[rows_to_keep, columns_to_keep]
+```
+
+Use the above syntax to save a copy of the mtcars data without the "am" column. Remember to use colnames() to find the column number of "am". Also recall that to select row/columns to drop (hence selecting everything else), you can use "-index #".
+
+```{r Exercise 9.4}
+# write code here
+```
+
+View your new mtcars copy data frame to check that the "am" column was dropped.
+
+```{r Exercise 9.5}
+# write code here
+```
+
 
 ###### (10) Installing Packages
 
