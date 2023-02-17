@@ -1,0 +1,136 @@
+---
+title: "Intro to Clinical Data: Part I"
+author: Nicole Black, Kayla Xu
+date: 07/17/22
+updated: 02/12/23
+---
+
+Welcome to your first experience using TCGA data in R! The first data type we will begin with is clinical data (ex: sex, age at initial diagnosis, tumor subtype, etc.)
+
+###### (1) Set up your working environment
+
+Before running this code, make sure you are in the correct working directory (your personal qbio_490_name folder) with getwd() and setwd(). Otherwise you’ll have trouble tracking the data down!
+
+As good general practice to keep things organized, create an "analysis_data" folder in the root of your GitHub repository (your qbio_490_name folder), then set that folder as your working directory ("/PATH/TO/qbio_490_name/analysis_data") whenever you are working with TCGA files. You can create the folder through your command line now.
+
+Once the folder is created, set your working directory below:
+
+```{r setup}
+    knitr::opts_knit$set(root.dir = normalizePath("/PATH/TO/analysis_data")) 
+```
+
+Before you move on, go to your GitHub web browser, open your .gitignore, and make sure the following is added in. 
+
+      "### TCGA Data
+      GDCdata
+      MANIFEST*
+      htseq_h5*
+      analysis_data"
+
+The loaded files from TCGA are quite large, so we don't want to push them to GitHub, it's also typically best to avoid putting raw data on GitHub.
+
+
+###### (2) Query and retrieve the TCGA breast cancer clinical data 
+
+```{r}
+clin_query <- #Fill in correct command
+  
+clinic <- #Fill in correct command
+
+```
+
+Querying TCGA data can take a while, even without downloading. A faster way to save and access the clinical data is to save the dataframe as a csv file on your local computer. Use the following command to do so:
+
+```{r}
+write.csv(clinic, "/PATH/TO/analysis_data/brca_clinical_data.csv", row.names=FALSE)
+```
+
+To read the csv back into your environment as a dataframe:
+
+```{r}
+clinic <- read.csv("/PATH/TO/analysis_data/brca_clinical_data.csv")
+```
+
+
+
+###### (3) Exploring the Data
+
+View the structure of the data as well as the first few lines. What two commands should you use?
+Answer the following questions based on the output of those commands: 
+1. How many rows are there? How many columns?
+2. What is the data type of $gender?
+3. What is the age in years of the 5th patient (barcode: TCGA-4H-AAAK)?
+4. How old was the 1st patient at their last follow up (barcode: TCGA-3C-AAAU)? HINT: you need to look at data from two columns to answer this
+
+```{r Exercise 3.1}
+# write code here
+```
+
+View the column and row names. What two commands should you use?
+
+```{r Exercise 3.2}
+# write code here
+```
+
+View the vital status column. What two notations can be used to view columns? 
+
+```{r Exercise 3.3}
+# write code here
+```
+
+###### (4) Plotting
+
+Choose two variables and make a scatter plot (recall the plot() function).
+
+THINK: what types of variables can you use in a scatter plot (continuous, discrete, categorical). Look these up if you need help!
+
+For an extra challenge, add a plot title, axes titles, and colors to your plot.
+
+```{r Exercise 4.1}
+# create plot here
+```
+
+Choose two new variables and make a box plot (recall the boxplot() function).
+
+THINK: what types of variables can you use in a box plot?
+
+For an extra challenge, add a plot title, axes titles, and confidence intervals to your plot.
+
+```{r Exercise 4.2}
+# create plot here
+```
+
+
+###### (5) Boolean Masking
+
+As discussed in lecture, a boolean mask is a vector of True and False values that allow for fast and efficient indexing of large dataframes in R. Boolean masks work as an extremely helpful implementation of R's vectorization abilities. 
+
+A significant portion of your coding work will be data cleaning and preparation using boolean masks. As such, it's important you are comfortable with making them.
+
+1) Create a mask to remove all NA values from vital_status
+```{r}
+vital_status_na_mask <- 
+```
+
+2) Create a mask to select for male patients
+```{r}
+male_mask <-
+```
+
+3) Create a mask to select for patients under the age of 35 OR over 60 at diagnosis. 
+```{r}
+under30_over60_mask <-
+```
+
+4) Using your under30_over60_mask, create a new dataframe called no_middle_clinic which contains all the clinical data for patients under the age of 30 or over 60 at diagnosis
+
+```{r}
+no_middle_clinic <- 
+```
+
+
+###### (6) Submitting Coding HW
+
+Your homework should be a secure copy (scp) of the original file in sp23_course_materials. Rename your file to include your name at the end (ie. Intro_to_Clinical_Data_I_kayla.Rmd). Push the file to Github through your qbio_490_name local repository and submit a link to your github repo to Blackboard. 
+
+Now you can move on to part II!
