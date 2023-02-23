@@ -159,8 +159,7 @@ Does this make sense given the biology of cancer?
 Subset your maf_object to create geneA_maf and geneB_maf.
 
 ```{r Exercise 6.1}
-## half class do: TP53 + PIK3CA
-## other half do: MUC16 + RYR2
+# Choose either: TP53 + PIK3CA or MUC16 + RYR2
 
 geneA_maf <- subsetMaf(maf = FILL IN HERE,
                        genes = FILL IN HERE) ## fill in with your gene name as a string
@@ -259,7 +258,8 @@ Generate an oncoplot by filling in the maf argument below. Fill in the top argum
 
 ```{r Exercise 8.1}
 oncoplot(maf = FILL IN HERE,
-         top = FILL IN HERE) 
+         top = FILL IN HERE,
+         borderCol = NA) 
 
 ggsave("PATH/TO/week7_maf/filename.png")
 ```
@@ -269,7 +269,8 @@ You can also create an oncoplot for specific genes of your choosing by passing a
 
 ```{r Exercise 8.2}
 oncoplot(maf = FILL IN HERE,
-         genes = FILL IN HERE)
+         genes = FILL IN HERE,
+         borderCol = NA)
 ```
 
 
@@ -284,7 +285,8 @@ maf_object@clinical.data$age_category <- ifelse(maf_object@clinical.data$age_at_
 
 oncoplot(maf = FILL IN HERE,
          top = 10,
-         clinicalFeatures = "age_category")
+         clinicalFeatures = "age_category",
+         borderCol = NA)
 ```
 
 Do you see any clustering between old and young patients?
@@ -322,7 +324,8 @@ Use coOncoplot() to draw two oncoplots side by side, comparing young vs. old pat
 coOncoplot(m1 = FILL IN HERE, 
            m2 = FILL IN HERE, 
            m1Name = FILL IN HERE, 
-           m2Name = FILL IN HERE)
+           m2Name = FILL IN HERE, 
+           borderCol = NA)
 
 ggsave("PATH/TO/week7_maf/filename.png")
 ```
