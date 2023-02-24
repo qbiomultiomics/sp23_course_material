@@ -18,7 +18,7 @@ updated: 02/22/23
 Before we get into MAF, we need to read in the clinical data (created in week 6) so it can be merged with our MAF data later on.
 
 ```{r Exercise 1.1}
-clinical <- read.csv("/PATH/TO/clinical_data/brca_clinical_data.csv")
+clinical <- read.csv("/PATH/TO/analysis_data/brca_clinical_data.csv")
 ```
 
 We also need to change the bcr_patient_barcode column name that way the MAF package can read our clinical file.
@@ -29,9 +29,9 @@ colnames(clinical)[ colnames(clinical) == "bcr_patient_barcode" ] <- "Tumor_Samp
 
 After changing the column name, re-save the clinical data frame to your computer.
 
-```{r}
-# change the file path! make sure it's in your week4 folder
-write.csv(clinical, "/PATH/TO/DESTINATION/brca_clinical_data.csv", row.names = FALSE)
+```{r Exercise 1.3}
+# change the file path! make sure it's in your  folder
+write.csv(clinical, "/PATH/TO/DESTINATION/analysis_data/brca_clinical_data.csv", row.names = FALSE)
 ```
 
 ###### (2) MAF Package
