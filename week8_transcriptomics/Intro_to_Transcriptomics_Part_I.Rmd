@@ -10,11 +10,24 @@ updated: 02/26/23
     knitr::opts_knit$set(root.dir = normalizePath("/PATH/TO/analysis_data")) 
 ```
 
-```{r}
+```{r Package Setup}
 # install, only if needed, and load packages (SummarizedExperiment and TCGAbiolinks)
 ```
 
-Make sure you have access to rna_se. If it is not already in your workspace (ie already queried, downloaded, and prepared), let Nicole know NOW so we can get you the data a different way.
+Load in the RNAseq data
+
+```{r}
+rna_query <- GDCquery(project ="TCGA-BRCA",
+                      data.category = "Transcriptome Profiling",
+                      data.type = "Gene Expression Quantification",
+                      workflow.type = "STAR - Counts")
+
+#GDCdownload(rna_query)
+
+rna_se <- GDCprepare(rna_query)
+
+```
+
 
 ###### (1) Summarized Experiment Basics
 
