@@ -164,7 +164,7 @@ Call rownames() and colnames() on rna_clinical.
 # write code here
 ```
 
-As you can see, the column names are informative, but the columns names are not. Let's fix this. Use the row.names() function to name the rows according to the barcode column.
+As you can see, the column names are informative, but the row names are not. Let's fix this. Use the row.names() function to name the rows according to the barcode column.
 
 ```{r Exercise 5.2}
 ?row.names
@@ -196,7 +196,7 @@ Let's move on to rna_genes. Call rownames() and colnames() on rna_genes.
 # write code here
 ```
 
-Once again, the column names are informative, but the columns names are not. Use row.names() to name the rows according to gene_id. Note: it would be nice to use gene_name instead of gene_id for the row names, but there are duplicate values in the gene_name column, and row names must be unique.
+Once again, the column names are informative, but the row names are not. Use row.names() to name the rows according to gene_id. Note: it would be nice to use gene_name instead of gene_id for the row names, but there are duplicate values in the gene_name column, and row names must be unique.
 
 ```{r Exercise 5.6}
 # write code here
